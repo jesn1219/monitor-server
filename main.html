@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #html-list {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            border-left: 1px solid black;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: calc(100% - 200px);
+            height: 100%;
+            border: 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e8e8e8;
+        }
+        #refresh-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="content" src=""></iframe>
+    <div id="html-list">
+        {% for file in html_files %}
+            <button onclick="loadHTML('{{ file }}')">{{ file }}</button>
+        {% endfor %}
+        <button id="refresh-button" onclick="refreshPage()">새로 고침</button>
+    </div>
+
+    <script>
+        function loadHTML(filename) {
+            document.getElementById('content').src = '/html/' + filename;
+        }
+
+        function refreshPage() {
+            const iframe = document.getElementById('content');
+            iframe.src = iframe.src;
+        }
+    </script>
+</body>
+</html>
