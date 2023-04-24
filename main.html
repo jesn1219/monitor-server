@@ -24,6 +24,7 @@
             border-left: 1px solid black;
             padding: 10px;
             overflow-y: auto;
+            display: block;
         }
         iframe {
             position: absolute;
@@ -47,15 +48,6 @@
         button:hover {
             background-color: #e8e8e8;
         }
-        #refresh-button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -64,17 +56,11 @@
         {% for file in html_files %}
             <button onclick="loadHTML('{{ file }}')">{{ file }}</button>
         {% endfor %}
-        <button id="refresh-button" onclick="refreshPage()">새로 고침</button>
     </div>
 
     <script>
         function loadHTML(filename) {
             document.getElementById('content').src = '/html/' + filename;
-        }
-
-        function refreshPage() {
-            const iframe = document.getElementById('content');
-            iframe.src = iframe.src;
         }
     </script>
 </body>
