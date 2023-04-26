@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멋진 대문 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="slideshow">
+        <img src="{% static 'images/IMG_0044.JPEG' %}" alt="Background 1" class="show">
+        <img src="{% static 'images/IMG_0929.jpeg' %}" alt="Background 2">
+        <img src="{% static 'images/IMG_0889.jpeg' %}" alt="Background 3">
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">홈</a></li>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#board">보드</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>환영합니다!</h1>
+        <p></p>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

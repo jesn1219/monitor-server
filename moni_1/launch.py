@@ -1,12 +1,16 @@
 from flask import Flask, render_template, send_from_directory
 import os
+from pathlib import Path
 
 app = Flask(__name__, static_folder='html', template_folder='.')
 
 @app.route('/')
 def main():
-    html_files = [f for f in os.listdir('html') if f.endswith('.html')]
-    return render_template('main.html', html_files=html_files)
+    html_dir = 'html'
+    html_files = [Path(f) for f in os.listdir(html_dir) if f.endswith('.html')]
+    print(html_files)
+    sorted_html_files = sorted(html_files, key=lambda x: (html_dir / x).stat().st_mtime, reverse=True)
+    return render_template('main.html', sorted_html_files=sorted_html_files)
 
 @app.route('/html/<path:path>')
 def serve_html(path):

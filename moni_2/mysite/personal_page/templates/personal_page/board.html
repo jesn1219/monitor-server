@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보드 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/board.css' %}">
+
+    <script>
+        const mediaFilesRaw = '{{ media_files|escapejs }}';
+        console.log(mediaFilesRaw);
+        //const mediaFiles = mediaFilesRaw.slice(1, -1).split("', '");
+        const mediaFiles = mediaFilesRaw.slice(2, -2).split("', '");
+        console.log(mediaFiles);
+    </script>
+    <script src="{% static 'js/board.js' %}" defer></script>
+</head>
+<body>
+    <h1>보드 페이지</h1>
+    <div id="media-container"></div>
+</body>
+</html>
+
+<!-- 팝업 엘리먼트 -->
+<div id="popup" class="popup hidden">
+    <div class="popup-content">
+        <span id="close-popup" class="close-popup">&times;</span>
+        <video id="popup-video" src="" controls></video>
+    </div>
+</div>

@@ -33,6 +33,9 @@
             width: calc(100% - 200px);
             height: 100%;
             border: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         button {
             display: block;
@@ -53,15 +56,14 @@
 <body>
     <iframe id="content" src=""></iframe>
     <div id="html-list">
-        {% for file in html_files %}
-            <button onclick="loadHTML('{{ file }}')">{{ file }}</button>
+        {% for file in sorted_html_files %}
+            <button onclick="loadHTML('{{ file.name }}')">{{ file.name }}</button>
         {% endfor %}
     </div>
-
-    <script>
-        function loadHTML(filename) {
-            document.getElementById('content').src = '/html/' + filename;
-        }
-    </script>
+<script>
+    function loadHTML(filename) {
+        document.getElementById('content').src = '/html/' + filename;
+    }
+</script>
 </body>
 </html>
