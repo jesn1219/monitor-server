@@ -4,6 +4,8 @@ const popup = document.getElementById('popup');
 const closePopup = document.getElementById('close-popup');
 const popupVideo = document.getElementById('popup-video');
 
+let selected_media_type = '';
+
 function showPopup(src) {
     popupVideo.src = src;
     popup.classList.remove('hidden');
@@ -14,11 +16,27 @@ function hidePopup() {
     popup.classList.add('hidden');
 }
 
-closePopup.addEventListener('click', hidePopup);
+//closePopup.addEventListener('click', hidePopup);
+popup.addEventListener('click', (e) => {
+    if (e.target === popup || e.target === closePopup) {
+        hidePopup();
+    }
+});
+popupVideo.addEventListener('click', (e) => {
+    if (e.target === popup || e.target === closePopup) {
+        popupVideo.src = '';
+        popup.classList.add('hidden');
+    }
+});
+
 
 
 // 클릭시 확대 기능
 function openMediaFullscreen(media) {
+    console.log(media.tagName) 
+    const mediaContent = media.firstChild;
+    if (mediaContent.tagName === 'VIDEO') return; // 동영상의 경우 확대 기능 사용 안 함
+
     const fullscreenContainer = document.createElement('div');
     fullscreenContainer.style.position = 'fixed';
     fullscreenContainer.style.top = '0';
@@ -65,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const video = document.createElement('video');
             video.src = mediaFilePath;
             video.controls = true;
+            video.muted = true; // 동영상의 기본 볼륨을 음소거로 설정
             media.appendChild(video);
             video.addEventListener('click', (e) => {
                 e.preventDefault();

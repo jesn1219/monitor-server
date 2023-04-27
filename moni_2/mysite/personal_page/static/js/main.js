@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         images[currentIndex].classList.add("show");
     }
 
-    setInterval(changeImage, 5000);
+    setInterval(changeImage, 7000);
 
     // 시간에 따른 인사말
     const greeting = document.querySelector(".content p");
